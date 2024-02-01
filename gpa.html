@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&family=Inter:wght@300;400;500;700&family=Mooli&family=PT+Sans+Narrow&family=Poppins:wght@200;400;500;600;800&family=Raleway&family=Roboto:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GPA Calculator</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #132952;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: "Cairo", sans-serif;
+        }
+
+        main {
+            background-color: aliceblue;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr;
+            padding:40px 20px;
+            gap: 10px;
+        }
+
+        main h1 {
+            grid-column: 1/span 2;
+            text-align: center;
+        }
+
+        main h5 {
+            grid-column: 1/span 2;
+            color: #262626;
+        }
+
+        main input {
+            padding: 5px;
+        }
+
+        main input:focus {
+            outline: none;
+        }
+
+        main button {
+            background-color: #244f9e;
+            color: #FEFEFE;
+            border: none;
+            padding: 5px;
+            border-radius: 6px;
+            grid-column: 1/span 2;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        main button:hover {
+            background-color: #2c62c4;
+        }
+    </style>
+</head>
+<body dir="rtl">
+    <main>
+        <h1>حساب المعدل التراكمي</h1>
+        <h5>لحساب المعدل التراكمي يجب ادخال قيمه النقاط</h5>
+        <input type="text" id="old-gpa" placeholder="Old GPA">
+
+        <select name="" id="">
+            <option value="IT">IT</option>
+        </select>
+
+        <input type="text" id="sub1" placeholder="Computer Organization">
+
+        <input type="text" id="sub2" placeholder="Algorithm Analysis">
+
+        <input type="text" id="sub3" placeholder="Artificial Intelligence">
+
+        <input type="text" id="sub4" placeholder="Machine Learning">
+
+        <input type="text" id="sub5" placeholder="Operating Systems">
+
+        <input type="text" id="sub6" placeholder="Network">
+
+        <button id="calc" onclick="calc();">حساب</button>
+        <p id="new-gpa">المعدل التراكمي الحالي:</p>
+    <main>
+    
+
+    <script>
+        function evaluate(myvalue){
+            if(myvalue=='A+'){
+                return 4;
+            } else if(myvalue=='A'){
+                return 3.7;
+            } else if(myvalue=='B+'){
+                return 3.3;
+            } else if(myvalue=='B'){
+                return 3;
+            } else if(myvalue=='C+'){
+                return 2.7;
+            } else if(myvalue=='C'){
+                return 2.4;
+            } else if(myvalue=='D+'){
+                return 2.2;
+            } else if(myvalue=='D'){
+                return 2;
+            } else {
+                return 0;
+            }
+        }
+
+        function calc() {
+            var sub1 = parseFloat(document.getElementById('sub1').value);
+            var sub2 = parseFloat(document.getElementById('sub2').value);
+            var sub3 = parseFloat(document.getElementById('sub3').value);
+            var sub4 = parseFloat(document.getElementById('sub4').value);
+            var sub5 = parseFloat(document.getElementById('sub5').value);
+            var sub6 = parseFloat(document.getElementById('sub6').value);
+            var oldGPA = parseFloat(document.getElementById('old-gpa').value);
+
+            var totalCredits = 17;
+            var totalSemesters = 5;
+            var totalGradePoints = ((3*sub1) + (3*sub2) + (3*sub3) + (3*sub4) + (3*sub5) + (2*sub6))/totalCredits;
+
+            var newGPA = (totalGradePoints + (4*oldGPA)) / totalSemesters; // Adding one course for calculation
+
+            document.getElementById('new-gpa').innerText = "المعدل التراكمي الحالي: " + newGPA.toFixed(2); // Displaying GPA with two decimal points
+        }
+    </script>
+</body>
+</html>
